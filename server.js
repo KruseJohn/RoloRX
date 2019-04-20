@@ -18,6 +18,10 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
 
+app.get('/login', (request, response) => {
+ response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
+
 dbsequelize.sync({ force: false }).then(function() {
   app.listen(PORT, function() {
     console.log(`🌎 ==> App listening on port ${PORT}!`);
