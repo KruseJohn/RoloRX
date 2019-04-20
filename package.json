@@ -1,7 +1,7 @@
 {
-  "name": "mern",
+  "name": "folder",
   "version": "1.0.0",
-  "description": "Mern Demo",
+  "description": "",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -19,7 +19,29 @@
     "nodemon": "^1.18.7"
   },
   "dependencies": {
-    "express": "^4.16.3",
-    "if-env": "^1.0.4"
+    "axios": "^0.18.0",
+    "bcrypt-nodejs": "0.0.3",
+    "bcryptjs": "^2.4.3",
+    "event-stream": "^4.0.1",
+    "express": "^4.16.4",
+    "express-session": "^1.16.1",
+    "if-env": "^1.0.4",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
+    "mysql2": "^1.6.5",
+    "npm": "^6.9.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "path-to-regexp": "^3.0.0",
+    "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.8",
+    "react-dom": "^16.8.6",
+    "react-moment": "^0.9.2",
+    "react-native-elements": "^1.1.0",
+    "react-navigation": "^3.8.1",
+    "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0",
+    "sequelize": "^5.7.1"
   }
 }
