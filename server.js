@@ -26,6 +26,18 @@ app.get('/signup', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
+app.get('/mainpage', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
+
+app.get('/addPatient', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
+
+app.get('/addRx', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
+
 db.sequelize.sync({ force: false }).then(function() {
   app.listen(PORT, function() {
     console.log(`🌎 ==> App listening on port ${PORT}!`);
