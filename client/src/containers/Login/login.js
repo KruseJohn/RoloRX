@@ -1,11 +1,10 @@
 import React from "react";
-//import axios from "axios";
+import axios from "axios";
 import Field from "../../components/Field";
 import Logo from "../../components/Logo/logo";
 import { Message } from "../../components/Message/message";
+import { Redirect } from "react-router-dom";
 import "./login.css";
-
-
 
 class Login extends React.Component {
     state = {
@@ -16,7 +15,58 @@ class Login extends React.Component {
         errorMessage: ''
     }
 
+    componentDidMount() {
+        localStorage.removeItem('JWT')
+    }
+
+    handleInput = e => {
+        const { name, value } = e.target
+        this.setState({ [name]: value })
+    }
+
+    handleSubmit = e => {
+        e.preventDefault()
+
+        if (this.state.username === '' || this.state.password === '') {
+            this.setState({
+                showError: false,
+                showNullError: true,
+                loggedIn: false,
+            });
+        } else {
+            axios.post('/loginUser',
+                    {
+                        username: this.state.username,
+                        password: this.state.password
+                    }
+                ).then(response => {
+                    if (response.data === 'Login failed') {
+                        console.log(response);
+                        this.setState({
+                            redirect: false,
+                            error: true,
+                            errorMessage: response.data 
+                        });
+                    } else {
+                        console.log('successful login');
+                        localStorage.setItem('JWT', response.data.token);
+                        this.setState({
+                            loggedIn: true,
+                            redirect: true
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.log(error.data);
+                });
+        }
+    }
+
     render() {
+        if (this.state.redirect === true) {
+            return <Redirect to='/mainpage' />
+        }
+
         return (
             <div>
                 <div className="gradient-background">

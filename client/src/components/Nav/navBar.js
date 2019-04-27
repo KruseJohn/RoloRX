@@ -3,6 +3,13 @@ import "./navBar.css";
 
 class NavLinks extends React.Component {
 
+    removeToken = () => {
+        console.log("removing JWT");
+        localStorage.removeItem('JWT')
+        let accessString = localStorage.getItem('JWT');
+        console.log(accessString);
+    }
+
     render() {
         return (
             <div className='topNav'>

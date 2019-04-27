@@ -1,7 +1,8 @@
 import React from "react";
 import NavLinks from "../../components/Nav/navBar";
-//import axios from "axios";
 import Logo from "../../components/Logo/logo";
+import axios from "axios";
+import { Redirect } from "react-router-dom";
 import "./addPatient.css";
 
 
@@ -16,6 +17,38 @@ class AddPatient extends React.Component {
         isLoggedIn: ''
     };
 
+    async componentDidMount() {
+
+        let accessString = localStorage.getItem('JWT');
+        // console.log(accessString);
+        if (accessString == null) {
+            this.setState({
+                isLoggedIn: false,
+                error: true,
+            });
+        } else {
+            await axios
+                .get('/findUser', {
+                    params: {
+                        username: this.props.match.params.username,
+                    },
+                    headers: { Authorization: `JWT ${accessString}` },
+                })
+                .then(response => {
+                    this.setState({
+                        userId: response.data.id,
+                        isLoggedIn: true,
+                        error: false,
+                    });
+                    console.log(response)
+                    console.log(this.state.userId)
+                })
+                .catch(error => {
+                    console.log(error.data);
+                });
+        }
+    }
+
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
@@ -25,9 +58,30 @@ class AddPatient extends React.Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
+        console.log("CLICK")
+        axios.post('/api/patients', {
+            name_first: this.state.firstName,
+            name_last: this.state.lastName,
+            UserId: this.state.userId
+        }).then(response => {
+
+            if (response !== null) {
+                console.log("patient inserted");
+                this.setState({ redirect: true })
+            } else {
+                console.log("patient NOT inserted");
+            }
+        })
     };
 
     render() {
+        if (this.state.redirect === true) {
+            return <Redirect to='/mainpage' />
+        }
+
+        if (this.state.isLoggedIn === false) {
+            window.location.href = '/login'
+        }
 
         return (
             <div className="dashboard-body gradient-background">

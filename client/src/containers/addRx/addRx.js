@@ -10,7 +10,6 @@ class AddRx extends Component {
     state = {
         rx_num: "",
         drugName: "",
-        ndc: "",
         refills: "",
         quantityDispensed: "",
         sig: "",
@@ -79,44 +78,34 @@ class AddRx extends Component {
             );
     }
 
-    getDailyMedLink = () => {
-        let drugName = this.state.drugName
-        let drugNameUpper = drugName.toUpperCase()
-        axios.get(`https://datadiscovery.nlm.nih.gov/resource/jc2n-g5w8.json?medicine_name=${drugNameUpper}`)
-        .then(response => {
-            if (response.data.length > 0) {
-                console.log(response.data[0].setid)
-                this.setState({ ndc: response.data[0].setid })
-            } else {
-                // this.setState({ ndc: "https://dailymed.nlm.nih.gov/dailymed/" })
-            }
+    getMed = () => {
 
-            axios.post('/api/Rxs', {
-                rx_num: this.state.rx_num,
-                drug_name: this.state.drugName,
-                ndc: this.state.ndc,
-                refills: this.state.refills,
-                dispensed_qty: this.state.quantityDispensed,
-                sig: this.state.sig,
-                frequency: this.state.dosage,
-                perDay: this.state.doseInterval,
-                time_of_day: this.state.timeOfDay,
-                pharmacist: this.state.pharmacist,
-                pharmacy_number: this.state.pharmacyContact,
-                prescriber: this.state.prescriber,
-                prescriber_number: this.state.prescriberContact,
-                patient: this.state.patient,
-                PatientId: this.state.patientId
-            }).then(response => {
-                if (response !== null) {
-                    // console.log("Rx inserted");
-                    this.setState({ redirect: true })
-                } else {
-                    // console.log("Rx NOT inserted"); 
-                }
-            })
+        axios.post('/api/Rxs', {
+            rx_num: this.state.rx_num,
+            drug_name: this.state.drugName,
+            refills: this.state.refills,
+            dispensed_qty: this.state.quantityDispensed,
+            sig: this.state.sig, 
+            perDay: this.state.dosage,
+            frequency: this.state.doseInterval,
+            time_of_day: this.state.timeOfDay,
+            pharmacist: this.state.pharmacist,
+            pharmacy_number: this.state.pharmacyContact,
+            prescriber: this.state.prescriber,
+            prescriber_number: this.state.prescriberContact,
+            patient: this.state.patient,
+            PatientId: this.state.patientId,
+            notes: this.state.notes
+        }).then(response => {
+            if (response !== null) {
+                // console.log("Rx inserted");
+                this.setState({ redirect: true })
+            } else {
+                // console.log("Rx NOT inserted"); 
+            }
         });
-    }
+    };
+    
 
     handleInputChange = event => {
         const { name, value } = event.target
@@ -129,8 +118,7 @@ class AddRx extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
 
-        this.getDailyMedLink()
-
+        this.getMed()
 
     }
 
@@ -148,10 +136,10 @@ class AddRx extends Component {
         );
         
         return (
-            <div className="gradient-background">
+            <div className="body">
             <NavLinks />
             <Logo />
-                <div className="container bbstyle addRx-box">
+                <div className="container">
                     <div className="row">
                         <div className="col-md-12">
                         <i className="fas fa-prescription fa-4x"></i>
@@ -166,7 +154,7 @@ class AddRx extends Component {
                                     {optionItems}
 
                                 </select>
-                                <label htmlFor="rx_num" className="addRxFormLabel">Prescription Number</label>
+                                <label htmlFor="rx_num" className="addRxFormLabel">Rx Number</label>
                                 <input type="text" className="form-control formFieldsStyleAddRx" id="rx_num"
                                     value={this.state.rx_num}
                                     name="rx_num"
@@ -178,19 +166,19 @@ class AddRx extends Component {
                                     name="drugName"
                                     onChange={this.handleInputChange}
                                 />
-                                <label htmlFor="refills" className="addRxFormLabel">Refills</label>
+                                <label htmlFor="refills" className="addRxFormLabel">Number of Refills</label>
                                 <input type="text" className="form-control formFieldsStyleAddRx" id="refills"
                                     value={this.state.refills}
                                     name="refills"
                                     onChange={this.handleInputChange}
                                 />
-                                <label htmlFor="quantity" className="addRxFormLabel">Quantity Dispensed</label>
+                                <label htmlFor="quantity" className="addRxFormLabel">Quantity Prescribed</label>
                                 <input type="text" className="form-control formFieldsStyleAddRx" id="quantity"
                                     value={this.state.quantityDispensed}
                                     name="quantityDispensed"
                                     onChange={this.handleInputChange}
                                 />
-                                <label htmlFor="dosage" className="addRxFormLabel">How Many</label>
+                                <label htmlFor="dosage" className="addRxFormLabel">Dose</label>
                                 <input type="text" className="form-control formFieldsStyleAddRx" id="dosage"
                                     value={this.state.dosage}
                                     name="dosage"
@@ -268,4 +256,4 @@ class AddRx extends Component {
     } //render
 }
 
-export default AddRx
+export default AddRx;

@@ -1,0 +1,5 @@
+.delete-btn, .rx-modal-btn {
+    float: right;
+    color: rgb(0, 0, 0);
+    margin-left: 10px;
+  }

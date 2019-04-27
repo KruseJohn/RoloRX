@@ -1,8 +1,9 @@
 import React from "react";
-//import axios from "axios";
+import axios from "axios";
 import Logo from "../../components/Logo/logo";
 import Field from "../../components/Field";
 import { Message } from "../../components/Message/message";
+import { Redirect } from "react-router-dom";
 import "./signup.css";
 
 class SignUp extends React.Component {
@@ -17,7 +18,121 @@ class SignUp extends React.Component {
         errorMessage: ''
     }
 
+    handleInput = e => {
+        const { name, value } = e.target
+        this.setState({ [name]: value })
+    }
+
+    handleSubmit = e => {
+        e.preventDefault()
+        const { username, password, firstName, lastName } = this.state
+        console.log(`Username ${username}`)
+        console.log(`Password is ${password}`)
+        console.log(`Name is ${firstName} ${lastName}`)
+        if (this.state.username && this.state.password && this.state.firstName && this.state.lastName !== '') {
+            if (this.state.password === this.state.confirmPassword) {
+                this.setState({ 
+                    redirect: true,
+                    error: true,
+                    errorMessage: 'Passwords Do Not Match'
+                })
+            } else if (this.state.password !== this.state.confirmPassword) {
+                this.setState({ 
+                    redirect: false,
+                    error: true,
+                    errorMessage: 'Passwords Do Not Match'
+                })
+            }
+        } else {
+            this.setState({ 
+                redirect: false,
+                error: true,
+                errorMessage: 'All input fields must not be blank'
+            })
+        }
+    }
+
+    registerUser = e => {
+        e.preventDefault();
+
+        if (
+            this.state.username === '' ||
+            this.state.password === '' ||
+            this.state.email === ''
+        ) {
+            this.setState({
+                showError: true,
+                loginError: false,
+                registerError: true,
+            });
+        } else {
+            axios
+                .post('/registerUser', {
+                    name_first: this.state.firstName,
+                    name_last: this.state.lastName,
+                    username: this.state.username,
+                    password: this.state.password
+                })
+                .then(response => {
+                    if (response.data === 'username or email already taken') {
+                        this.setState({
+                            showError: true,
+                            loginError: true,
+                            registerError: false,
+                            error: true,
+                            errorMessage: response.data
+                        });
+                    } else {
+                        this.setState({
+                            messageFromServer: response.data.message,
+                            showError: false,
+                            loginError: false,
+                            registerError: false,
+                        });
+
+                        axios.post('/loginUser',
+                            {
+                                username: this.state.username,
+                                password: this.state.password
+                            }
+                        ).then(response => {
+                            if (response.data === 'Login failed') {
+                                console.log(response.data);
+                                this.setState({
+                                    showError: true,
+                                    showNullError: false,
+                                    redirect: false
+                                });
+                            } else {
+                                console.log('successful login');
+                                localStorage.setItem('JWT', response.data.token);
+                                this.setState({
+                                    loggedIn: true,
+                                    showError: false,
+                                    showENullrror: false,
+                                    redirect: true
+                                });
+                            }
+                        })
+                            .catch(error => {
+                                console.log(error.data);
+                            });
+                    }
+                })
+                .catch(error => {
+                    console.log(error.data);
+                });
+        }
+
+        if (this.state.username && this.state.password && this.state.firstName && this.state.lastName !== '') {
+            this.setState({ redirect: true })
+        }
+    };
+
     render() {
+        if (this.state.redirect === true) {
+            return <Redirect to='/mainpage' />
+        }
 
         return (
             <div>
