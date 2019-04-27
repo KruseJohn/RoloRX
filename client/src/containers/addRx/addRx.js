@@ -207,7 +207,7 @@ class AddRx extends Component {
                                     <option value="Noon">Noon</option>
                                     <option value="Evening">Evening</option>
                                     <option value="Bedtime">Bedtime</option>
-                                    <option value="asNeeded">As Needed</option>
+                                    <option value="As Needed">As Needed</option>
                                 </select>
                                 <label htmlFor="SIG" className="addRxFormLabel">Patient Directions - <i>Optional</i></label>
                                 <br/><i className="addRxFormLabelExample">Example: Take one tablet daily by mouth</i>
