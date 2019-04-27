@@ -155,7 +155,7 @@ class MainPage extends React.Component {
                                     ))}
                                 </PatientCard>
                             ))}
-                            <a href='/addpatient'><button className="standard-btn">ADD NEW PATIENT</button></a>
+                            <a href='/addpatient'><button className="standard-btn">ADD NEW PATIENT</button></a>&nbsp;<a href='/addRx'><button className="standard-btn">ADD NEW Rx</button></a>
                         </div>
                     </div>
                 </div>
