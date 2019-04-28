@@ -1,0 +1,27 @@
+.patient-card {
+    font-family: 'Montserrat', sans-serif;
+    padding: 20px;
+    margin-top: 20px;
+    background: rgb(248, 248, 248);
+    box-shadow: 3px 3px 20px -3px rgba(0, 0, 0, 0.568);
+    border-radius: 5px;
+}
+
+.patient-card-header {
+    font-style: italic;
+    font-size: 1.4em;
+    text-align: left;
+}
+
+.patient-card-body {
+    margin-top: 5px;
+    font-size: 15px;
+}
+
+.patient-card:last-child {
+    margin-bottom: 0;
+}
+
+.divider {
+    border: 1px solid black;
+}

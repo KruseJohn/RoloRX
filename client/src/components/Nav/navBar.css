@@ -1,0 +1,58 @@
+.topNav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    color: black;
+    text-align: center;
+    border-bottom: 1px solid black;
+    border-top: 6px solid #af0000;
+    margin-top: 0;
+    background-color: #ffffff;
+    z-index: 1;
+}
+
+.bar-cols {
+    width: 20%;
+    background-color: #f5dfdf;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.fas {
+    text-decoration: none !important;
+    color: black; 
+}
+
+.black {
+    color: black;
+}
+
+.maroon {
+    color: darkred;
+}
+
+.darkred {
+    color: rgb(167, 0, 0);
+    opacity: .7;
+}
+
+.pink {
+    color: palevioletred;
+    opacity: .7;
+}
+
+.blue {
+    color: blue;
+    opacity: .7;
+}
+
+.lightblue {
+    color: rgb(0, 0, 155);
+    opacity: .7;
+}
+
+.green {
+    color: rgb(0, 104, 0);
+    opacity: .7;
+}

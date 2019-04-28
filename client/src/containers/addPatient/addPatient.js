@@ -58,7 +58,7 @@ class AddPatient extends React.Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        console.log("CLICK")
+        //console.log("CLICK")
         axios.post('/api/patients', {
             name_first: this.state.firstName,
             name_last: this.state.lastName,
@@ -107,8 +107,10 @@ class AddPatient extends React.Component {
                                     placeholder="Last Name"
                                 />
                             </div>
-                            <button onClick={this.handleFormSubmit} className="btn standard-btn gePatientData">SUBMIT</button>
+                            <div className="col-md-4 mx-auto">
+                            <button onClick={this.handleFormSubmit} className="btn standard-btn getPatientData">SUBMIT</button>
                         </div >
+                        </div>
                     </div >
                     </div>
                 </div>

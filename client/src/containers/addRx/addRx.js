@@ -136,10 +136,10 @@ class AddRx extends Component {
         );
         
         return (
-            <div className="body">
+            <div className="gradient-background">
             <NavLinks />
             <Logo />
-                <div className="container">
+                <div className="container bbstyle addRx-box">
                     <div className="row">
                         <div className="col-md-12">
                         <i className="fas fa-prescription fa-4x"></i>
@@ -246,7 +246,9 @@ class AddRx extends Component {
                                     name="notes"
                                     onChange={this.handleInputChange}
                                 />
+                                <div className="col-md-4 mx-auto">
                                 <button onClick={this.handleFormSubmit} type="submit" className="btn btn-primary bg-danger getRxData">SUBMIT</button>
+                            </div>
                             </div>
                         </div>
                     </div>

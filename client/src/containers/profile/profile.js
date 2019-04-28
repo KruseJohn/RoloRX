@@ -1,7 +1,6 @@
 import React from "react";
 import Logo from "../../components/Logo/logo";
 import NavLinks from "../../components/Nav/navBar";
-import "./profile.css";
 
 
 class Profile extends React.Component {

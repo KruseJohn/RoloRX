@@ -1,0 +1,39 @@
+.title {
+    font-family: 'Montserrat', sans-serif;
+    color: wheat; 
+}
+
+.title:hover {
+    color: #47ff41;
+    text-decoration: none;
+}
+
+.rolo {
+    color: black;
+    border-left: 8px solid black;
+    padding-left: 5px;
+}
+
+.red {
+    font-size: 1em;
+    border-right: 8px solid black;
+    padding: 6px 5px;
+}
+
+.nav {
+    padding-top: 100px;
+    border: 0px;
+    padding-bottom: 5px;    
+}
+
+
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) { 
+    .nav, .navbar, .navbar-default {
+        padding-top: 40px;
+        border: 0px;
+        padding-bottom: 5px; 
+        padding-left: 0px;
+    }
+}

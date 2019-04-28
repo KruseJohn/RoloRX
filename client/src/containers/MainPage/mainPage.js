@@ -3,10 +3,11 @@ import Logo from "../../components/Logo/logo";
 import { PatientCard } from "../../components/PatientCard/patientCard";
 import { Rx } from "../../components/PatientCard/rx";
 import NavLinks from "../../components/Nav/navBar";
-import DeleteBtn from "../../components/Buttons/deleteBtn";
+import DeleteBtn from "../../components/Buttons/deleteBtnLarge";
+import DeleteBtnSmall from "../../components/Buttons/deleteBtnSmall.js";
 import RxModalBtn from "../../components/Buttons/openModalBtn";
 import RxModal from "../../components/RxModal/rxModal";
-
+import Moment from 'react-moment';
 import axios from "axios";
 import "./mainPage.css";
 
@@ -17,8 +18,8 @@ class MainPage extends React.Component {
         drugNames: [],
         userId: "",
         show: false,
-        patientId: '',
-        isLoggedIn: ''
+        patientId: "",
+        isLoggedIn: ""
        }
 
     async componentDidMount() {
@@ -32,7 +33,7 @@ class MainPage extends React.Component {
             });
         } else {
             await axios
-                .get('/findUser', {
+                .get("/findUser", {
                     params: {
                         username: this.props.match.params.username,
                     },
@@ -58,7 +59,7 @@ class MainPage extends React.Component {
     }
 
     loadUser = () => {
-        axios.get('/api/user/patient/rx/' + this.state.userId)
+        axios.get("/api/user/patient/rx/" + this.state.userId)
             .then(patientData => {
                 // console.log(patientData.data.Patients);
                 this.setState({
@@ -70,13 +71,13 @@ class MainPage extends React.Component {
     }
 
     deleteRx = id => {
-        axios.delete('/api/Rxs/' + id)
+        axios.delete("/api/Rxs/" + id)
             .then(res => this.loadUser())
             .catch(err => console.log(err));
     };
 
     deletePatient = id => {
-        axios.delete('/api/user/patient/' + id)
+        axios.delete("/api/user/patient/" + id)
             .then(res => this.loadUser())
             .catch(err => console.log(err));
     };
@@ -98,38 +99,39 @@ class MainPage extends React.Component {
 
     render() {
         if (this.state.isLoggedIn === false) {
-            window.location.href = '/login'
+            window.location.href = "/login"
         }
 
         return (
-            <div className="body">
+            <div className="gradient-background">
                 <NavLinks />
                 <Logo />
                 <div className="container">
-                    <div className='row'>
+                <h1 id="clock"><Moment format="MMMM D, YYYY">{this.props.dateToFormat}</Moment></h1>
+                    <div className="row dashboard bbstyle">
                         {this.state.patients.filter(patient => patient.id === this.state.patientId).map(patient => (
                             <RxModal
                                 show={this.state.show}
                                 handleClose={this.handleHideModal}
                                 key={patient.id}>
-                                <strong>{patient.name_first} </ strong>
-                                <strong>{patient.name_last}</strong>
+                                <h4><i><strong> {patient.name_first} </strong>
+                                <strong> {patient.name_last} </strong></i></h4>
                                 <hr />
                                 {patient.Rxes.map(drug => (
                                     <Rx key={drug.id}>
-                                        Medication Name: {drug.drug_name}<br />
-                                        Rx Number: {drug.rx_num}<br />
-                                        Number of Refills: {drug.refills}<br />
-                                        Quantity Prescribed: {drug.dispensed_qty}<br />
-                                        Dose: {drug.perDay}<br />
-                                        Frequency: {drug.frequency}<br />
-                                        Time of Day: {drug.time_of_day}<br />
-                                        Patient Directions: {drug.sig}<br />
-                                        Prescriber: {drug.prescriber}<br />
-                                        Prescriber Number: {drug.prescriber_number}<br />
-                                        Pharmacist: {drug.pharmacist}<br />
-                                        Pharmacy Number: {drug.pharmacy_number}<br />
-                                        Notes: {drug.notes}<br /> 
+                                        <strong>Medication Name:</strong> {drug.drug_name}<br />
+                                        <strong>Rx Number:</strong> {drug.rx_num}<br />
+                                        <strong>Number of Refills:</strong> {drug.refills}<br />
+                                        <strong>Quantity Prescribed:</strong> {drug.dispensed_qty}<br />
+                                        <strong>Dose:</strong> {drug.perDay}<br />
+                                        <strong>Frequency:</strong> {drug.frequency}<br />
+                                        <strong>Time of Day:</strong> {drug.time_of_day}<br />
+                                        <strong>Patient Directions:</strong> {drug.sig}<br />
+                                        <strong>Prescriber:</strong> {drug.prescriber}<br />
+                                        <strong>Prescriber Number:</strong> {drug.prescriber_number}<br />
+                                        <strong>Pharmacist:</strong> {drug.pharmacist}<br />
+                                        <strong>Pharmacy Number:</strong> {drug.pharmacy_number}<br />
+                                        <strong>Notes:</strong> {drug.notes}<br /> 
                                         <br/>
                                         <hr/>
                                     </Rx>
@@ -137,25 +139,45 @@ class MainPage extends React.Component {
                             </RxModal>
                         ))}
 
-                        <div className='col-md-12 patient-cards'>
+                        <div className="col-md-12 patient-cards">
                             {this.state.patients.map(patient => (
                                 <PatientCard
-                                    key={patient.id}>
-                                    <RxModalBtn onClick={() => this.handleRxModal(patient.id)} />
-                                    <DeleteBtn onClick={() => this.deletePatient(patient.id)} />
+                                    key={patient.id}>   
+                                    <DeleteBtn title="Delete Patient From Account" onClick={() => this.deletePatient(patient.id)} />
+                                    <RxModalBtn title="See Full Prescription Info" onClick={() => this.handleRxModal(patient.id)} />
                                     {patient.name_first}
                                     {patient.name_last}
                                     {patient.Rxes.map(drug => (
                                         <Rx key={drug.id}>
-                                            <strong><i className="fas fa-prescription-bottle-alt black"></i></strong> {drug.drug_name}<strong> <i className="fa-icon far fa-clock"></i></strong>   {drug.time_of_day}  <strong><i className="fa-icon far fa-calendar-alt"></i></strong>  {drug.frequency}
-                                            <DeleteBtn onClick={() => this.deleteRx(drug.id)} />
-                                            <br/>
+                                        <div className="row">
+                                            <div className="col mb-3">
+                                            <strong><i className="fas fa-prescription-bottle-alt fa-lg darkred" title="Drug Name"></i></strong> {drug.drug_name} 
+                                            </div>
+                                            <div className="col mb-3">
+                                            <strong><i className="fa-icon far fa-calendar-alt fa-lg lightblue" title="Frequency"></i></strong>  {drug.frequency} 
+                                            </div>
+                                            <div className="col mb-3">
+                                            <strong><i className="fa-icon far fa-clock fa-lg" title="Time of Day"></i></strong>   {drug.time_of_day}
+                                            </div>
+                                            <div className="col mb-3">
+                                            <DeleteBtnSmall title="Delete this Prescription" onClick={() => this.deleteRx(drug.id)} />
+                                            </div>
+                                        </div>
                                             <br/>
                                         </Rx>
                                     ))}
+                                    
                                 </PatientCard>
                             ))}
-                            <a href='/addpatient'><button className="standard-btn">ADD NEW PATIENT</button></a>&nbsp;<a href='/addRx'><button className="standard-btn">ADD NEW Rx</button></a>
+                            <div className="row">
+                                <div className="col-sm-5">
+                                    <a href='/addpatient'><button className="standard-btn">ADD NEW PATIENT</button></a>
+                                </div>
+                                <div className="col"></div>        
+                                <div className="col-sm-4">
+                                    <a href='/addRx'><button className="standard-btn">ADD NEW Rx</button></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

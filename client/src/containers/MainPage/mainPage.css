@@ -1,0 +1,16 @@
+#clock {
+    text-align: left;
+    color: white;
+    margin-top: 40px;
+}
+
+.get-drug-info:hover {
+   opacity: .9;
+   cursor: pointer;
+}
+
+.fa-notes-medical {
+   color: #ffffff;
+}
+
+

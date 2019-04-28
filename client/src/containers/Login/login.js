@@ -4,7 +4,6 @@ import Field from "../../components/Field";
 import Logo from "../../components/Logo/logo";
 import { Message } from "../../components/Message/message";
 import { Redirect } from "react-router-dom";
-import "./login.css";
 
 class Login extends React.Component {
     state = {
@@ -72,7 +71,7 @@ class Login extends React.Component {
                 <div className="gradient-background">
                     <Logo />
                     <div className="login-div">
-                        <div className="bbstyle login-div container">
+                        <div className="container bbstyle">
                             <h3 className="login-h3">LOG IN</h3>
                             <div className='row'>
                                 <div className='col-md-12'>
@@ -95,8 +94,10 @@ class Login extends React.Component {
                                     </form>
                                 </div>
                             </div>
+                            <div className="col-md-3 mx-auto">
                             <input id='submit' type='submit' value='SUBMIT' onClick={this.handleSubmit} />
-                            <span><a href='/signup'>Sign Up</a></span> 
+                            </div>
+                            <span><a href='/signup'>Don't have an account?  Sign up!</a></span> 
                             <br />
                             {this.state.error ? <Message key='1'> {this.state.errorMessage} </Message> : null}
                         </div>
