@@ -3,8 +3,8 @@ import "./DeleteBtn.css";
 
 
 const DeleteBtnLarge = props => (
-  <span className="delete-btn" {...props}>
-    <span className="far fa-trash-alt maroon"></span>
+  <span className="delete-btn" {...props}> 
+    <span className="far fa-trash-alt maroon"></span> 
   </span>
 );
 

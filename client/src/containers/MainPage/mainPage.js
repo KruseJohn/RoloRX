@@ -7,7 +7,8 @@ import DeleteBtn from "../../components/Buttons/deleteBtnLarge";
 import DeleteBtnSmall from "../../components/Buttons/deleteBtnSmall.js";
 import RxModalBtn from "../../components/Buttons/openModalBtn";
 import RxModal from "../../components/RxModal/rxModal";
-import Moment from 'react-moment';
+import Moment from "react-moment";
+import SweetAlert from "react-bootstrap-sweetalert";
 import axios from "axios";
 import "./mainPage.css";
 
@@ -20,7 +21,7 @@ class MainPage extends React.Component {
         show: false,
         patientId: "",
         isLoggedIn: ""
-       }
+       };
 
     async componentDidMount() {
         console.log("getting access string");
@@ -63,7 +64,8 @@ class MainPage extends React.Component {
             .then(patientData => {
                 // console.log(patientData.data.Patients);
                 this.setState({
-                    patients: patientData.data.Patients
+                    patients: patientData.data.Patients,
+                    alert: null
                 })
             })
             .catch(err => console.log(`Error: ${err}`)
@@ -71,16 +73,57 @@ class MainPage extends React.Component {
     }
 
     deleteRx = id => {
-        axios.delete("/api/Rxs/" + id)
-            .then(res => this.loadUser())
-            .catch(err => console.log(err));
-    };
+
+        const getAlert = () => (
+            <SweetAlert
+            warning
+            showCancel
+            confirmBtnText="Yes!"
+            confirmBtnBsStyle="danger"
+            cancelBtnBsStyle="default"
+            title="Are you sure you want to delete this medication from the patient's file?"
+            onConfirm={() => axios.delete("/api/Rxs/" + id).then(res => this.loadUser())}
+            onCancel={() => this.onCancelDelete()}
+            >
+            You will not be able to recover it once deleted!
+        </SweetAlert>
+        );
+
+        this.setState({
+            alert: getAlert()
+        });
+         
+    }
+    
+    onCancelDelete(){
+        this.setState({
+            alert: null
+        });
+    }
+    
 
     deletePatient = id => {
-        axios.delete("/api/user/patient/" + id)
-            .then(res => this.loadUser())
-            .catch(err => console.log(err));
-    };
+
+        const getAlert = () => (
+            <SweetAlert
+            warning
+            showCancel
+            confirmBtnText="Yes!"
+            confirmBtnBsStyle="danger"
+            cancelBtnBsStyle="default"
+            title="Are you sure you want to delete this patient?"
+            onConfirm={() => axios.delete("/api/user/patient/" + id).then(res => this.loadUser())}
+            onCancel={() => this.onCancelDelete()}
+            >
+            All information including the list of medications will be deleted!
+        </SweetAlert>
+        );
+
+        this.setState({
+            alert: getAlert()
+        });
+    }
+        
 
     handleInputChange = event => {
         const { name, value } = event.target
@@ -96,6 +139,7 @@ class MainPage extends React.Component {
     }
 
     handleHideModal = () => this.setState({ show: false })
+
 
     render() {
         if (this.state.isLoggedIn === false) {
@@ -141,40 +185,55 @@ class MainPage extends React.Component {
 
                         <div className="col-md-12 patient-cards">
                             {this.state.patients.map(patient => (
-                                <PatientCard
-                                    key={patient.id}>   
-                                    <DeleteBtn title="Delete Patient From Account" onClick={() => this.deletePatient(patient.id)} />
-                                    <RxModalBtn title="See Full Prescription Info" onClick={() => this.handleRxModal(patient.id)} />
+                                <PatientCard key={patient.id}>  
+                                    <div className="row">
+                                    <div className="col-sm-10">
                                     {patient.name_first}
+                                    {" "}
                                     {patient.name_last}
+                                    </div>
+                                    <div className="col-sm-1">
+                                    
+                                    <RxModalBtn title="See Full Prescription Info" onClick={() => this.handleRxModal(patient.id)} />
+                                    </div>
+                                    <div className="col-sm-1">
+                                    <DeleteBtn title="Delete Patient From Account" onClick={() => this.deletePatient(patient.id)} /> {this.state.alert}
+                                    
+                                    </div>
+                                    </div>
+                                    <hr />
                                     {patient.Rxes.map(drug => (
                                         <Rx key={drug.id}>
-                                        <div className="row">
-                                            <div className="col mb-3">
+                                        <div className="row" id="contents">
+                                            <div className="col-sm mt-4 mb-2" id="border">
                                             <strong><i className="fas fa-prescription-bottle-alt fa-lg darkred" title="Drug Name"></i></strong> {drug.drug_name} 
                                             </div>
-                                            <div className="col mb-3">
+                                            <div className="col-sm mt-4 mb-2" id="border">
+                                            <strong><i className="fas fa-pills fa-lg blue" title="Dosage"></i></strong> {drug.perDay} 
+                                            </div>
+                                            <div className="col-sm mt-4 mb-2" id="border">
                                             <strong><i className="fa-icon far fa-calendar-alt fa-lg lightblue" title="Frequency"></i></strong>  {drug.frequency} 
                                             </div>
-                                            <div className="col mb-3">
+                                            <div className="col-sm mt-4 mb-2" id="border">
                                             <strong><i className="fa-icon far fa-clock fa-lg" title="Time of Day"></i></strong>   {drug.time_of_day}
                                             </div>
-                                            <div className="col mb-3">
-                                            <DeleteBtnSmall title="Delete this Prescription" onClick={() => this.deleteRx(drug.id)} />
+                                            <div className="col-sm-1 mt-4 mb-2" id="border">          
+                                            <DeleteBtnSmall title="Delete this Prescription" onClick={() => this.deleteRx(drug.id)} /> {this.state.alert}                                   
                                             </div>
                                         </div>
-                                            <br/>
+                                        <div className="divider"></div>
+                                            
                                         </Rx>
                                     ))}
                                     
                                 </PatientCard>
                             ))}
                             <div className="row">
-                                <div className="col-sm-5">
+                                <div className="col-sm-5 mt-3">
                                     <a href='/addpatient'><button className="standard-btn">ADD NEW PATIENT</button></a>
                                 </div>
                                 <div className="col"></div>        
-                                <div className="col-sm-4">
+                                <div className="col-sm-4 mt-3">
                                     <a href='/addRx'><button className="standard-btn">ADD NEW Rx</button></a>
                                 </div>
                             </div>
