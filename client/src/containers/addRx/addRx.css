@@ -27,3 +27,9 @@
     line-height: 1;
     Font-weight: bold
 }
+
+.gradient-background2 {
+    background: linear-gradient(35deg, #ca5c74, #ca5c5c 25%, #df4d91);
+    height: 100%;
+    min-height: 1100px;
+}

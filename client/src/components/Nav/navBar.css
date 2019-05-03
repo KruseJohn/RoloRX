@@ -6,7 +6,7 @@
     color: black;
     text-align: center;
     border-bottom: 1px solid black;
-    border-top: 6px solid #af0000;
+    border-top: 6px solid #cabdbd;
     margin-top: 0;
     background-color: #ffffff;
     z-index: 1;
@@ -17,6 +17,23 @@
     background-color: #f5dfdf;
     padding-top: 8px;
     padding-bottom: 8px;
+}
+
+.hvr-grow {
+    display: inline-block;
+    vertical-align: middle;
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    transition-duration: 0.3s;
+    transition-property: transform;
+}
+
+.hvr-grow:hover,
+.hvr-grow:focus,
+.hvr-grow:active {
+    transform: scale(1.2);
 }
 
 .fas {

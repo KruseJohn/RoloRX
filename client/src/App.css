@@ -1,5 +1,5 @@
 a {
-  color:#283c41;
+  color:#ffffff;
 }
 
 a:hover {
@@ -9,7 +9,7 @@ a:hover {
 
 /* SUBMIT BUTTON */
 .submit, #submit {
-  background-color: rgb(0, 73, 97);
+  background-color: rgb(6, 133, 175);
   font-size: 20px;
   color: white;
   border: none;
@@ -32,7 +32,7 @@ a:hover {
   margin-top: 25px;
   width: 100%;
   height: 45px;
-  background-color: rgb(0, 72, 94);
+  background-color: rgb(0, 89, 116);
   color: White;
   border: 0px;
   font-size: 20px;
@@ -49,7 +49,7 @@ a:hover {
 
 .bbstyle {
   box-sizing: border-box;
-  background: rgb(189, 189, 189);
+  background: rgb(216, 206, 206);
   color: rgb(0, 0, 0);
   font-size: 20px;
   border-radius: 10px;
@@ -62,7 +62,13 @@ a:hover {
 }
 
 .gradient-background {
-  background: linear-gradient(300deg, #c70000 0%, #bd5959 100%);
+  background: linear-gradient(35deg, #e66465, #e66465 5%, #9198e5);
+  height: 100%;
+  min-height: 1100px;
+}
+
+.gradient-background1 {
+  background: linear-gradient(35deg, #6492e6, #6492e6 25%, #b191e5);
   height: 100%;
   min-height: 1100px;
 }
@@ -111,14 +117,6 @@ and (orientation : portrait) {
       margin-right: auto;
       margin-top: 50px;
   }
-
-  img {
-      width: 300px;
-      margin-left: auto;
-      margin-right: auto;
-      box-sizing: border-box;
-      border-radius: 2px;
-   }
 
   h1 {
       margin-right: 10px;

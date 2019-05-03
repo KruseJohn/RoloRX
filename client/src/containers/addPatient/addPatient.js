@@ -84,7 +84,7 @@ class AddPatient extends React.Component {
         }
 
         return (
-            <div className="dashboard-body gradient-background">
+            <div className="dashboard-body gradient-background3">
                 <NavLinks />
                 <Logo />
                 <div className="container">

@@ -5,10 +5,15 @@
 #clock {
     color: white;
     margin-top: 30px;
+    text-align: right;
 }
 
 .divider {
     margin: 0 2%;
     border: .7px dashed lightgray;
+}
+
+.tablets, .person {
+    margin-right: 8px;
 }
 

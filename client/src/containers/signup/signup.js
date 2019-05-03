@@ -15,7 +15,7 @@ class SignUp extends React.Component {
         lastName: '',
         redirect: false,
         error: false,
-        errorMessage: ''
+        errorMessage: '',
     }
 
     handleInput = e => {
@@ -57,8 +57,7 @@ class SignUp extends React.Component {
 
         if (
             this.state.username === '' ||
-            this.state.password === '' ||
-            this.state.email === ''
+            this.state.password === ''
         ) {
             this.setState({
                 showError: true,
@@ -66,6 +65,7 @@ class SignUp extends React.Component {
                 registerError: true,
             });
         } else {
+
             axios
                 .post('/registerUser', {
                     name_first: this.state.firstName,
@@ -74,7 +74,7 @@ class SignUp extends React.Component {
                     password: this.state.password
                 })
                 .then(response => {
-                    if (response.data === 'username or email already taken') {
+                    if (response.data === 'username already taken') {
                         this.setState({
                             showError: true,
                             loginError: true,
@@ -104,29 +104,34 @@ class SignUp extends React.Component {
                                     redirect: false
                                 });
                             } else {
-                                console.log('successful login');
+                                console.log('successful register!');
                                 localStorage.setItem('JWT', response.data.token);
                                 this.setState({
                                     loggedIn: true,
                                     showError: false,
-                                    showENullrror: false,
+                                    showNullrror: false,
                                     redirect: true
-                                });
+                                });  
+                                  
                             }
                         })
-                            .catch(error => {
-                                console.log(error.data);
-                            });
+                        .catch(error => {
+                            console.log(error.data);
+                        });
+
+                    
                     }
-                })
-                .catch(error => {
-                    console.log(error.data);
-                });
+            })
+            .catch(error => {
+            console.log(error.data); 
+
+            });
         }
 
         if (this.state.username && this.state.password && this.state.firstName && this.state.lastName !== '') {
-            this.setState({ redirect: true })
-        }
+            this.setState({ redirect: true }) 
+        } 
+        
     };
 
     render() {

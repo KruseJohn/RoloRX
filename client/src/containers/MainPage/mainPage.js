@@ -101,7 +101,6 @@ class MainPage extends React.Component {
         });
     }
     
-
     deletePatient = id => {
 
         const getAlert = () => (
@@ -124,7 +123,6 @@ class MainPage extends React.Component {
         });
     }
         
-
     handleInputChange = event => {
         const { name, value } = event.target
         this.setState({
@@ -147,7 +145,7 @@ class MainPage extends React.Component {
         }
 
         return (
-            <div className="gradient-background">
+            <div className="gradient-background1">
                 <NavLinks />
                 <Logo />
                 <div className="container">
@@ -187,54 +185,50 @@ class MainPage extends React.Component {
                             {this.state.patients.map(patient => (
                                 <PatientCard key={patient.id}>  
                                     <div className="row">
-                                    <div className="col-sm-10">
-                                    {patient.name_first}
-                                    {" "}
-                                    {patient.name_last}
-                                    </div>
-                                    <div className="col-sm-1">
-                                    
-                                    <RxModalBtn title="See Full Prescription Info" onClick={() => this.handleRxModal(patient.id)} />
-                                    </div>
-                                    <div className="col-sm-1">
-                                    <DeleteBtn title="Delete Patient From Account" onClick={() => this.deletePatient(patient.id)} /> {this.state.alert}
-                                    
-                                    </div>
+                                        <div className="col-sm-10">
+                                            {patient.name_first}
+                                            {" "}
+                                            {patient.name_last}
+                                        </div>
+                                        <div className="col-sm-1">                                   
+                                            <RxModalBtn title="See Full Prescription Info" onClick={() => this.handleRxModal(patient.id)} />
+                                        </div>
+                                        <div className="col-sm-1">
+                                            <DeleteBtn title="Delete Patient From Account" onClick={() => this.deletePatient(patient.id)} /> {this.state.alert}                                  
+                                        </div>
                                     </div>
                                     <hr />
                                     {patient.Rxes.map(drug => (
-                                        <Rx key={drug.id}>
-                                        <div className="row" id="contents">
-                                            <div className="col-sm mt-4 mb-2" id="border">
+                                    <Rx key={drug.id}>
+                                    <div className="row" id="contents">
+                                        <div className="col-sm mt-4 mb-2" id="border">
                                             <strong><i className="fas fa-prescription-bottle-alt fa-lg darkred" title="Drug Name"></i></strong> {drug.drug_name} 
-                                            </div>
-                                            <div className="col-sm mt-4 mb-2" id="border">
-                                            <strong><i className="fas fa-pills fa-lg blue" title="Dosage"></i></strong> {drug.perDay} 
-                                            </div>
-                                            <div className="col-sm mt-4 mb-2" id="border">
-                                            <strong><i className="fa-icon far fa-calendar-alt fa-lg lightblue" title="Frequency"></i></strong>  {drug.frequency} 
-                                            </div>
-                                            <div className="col-sm mt-4 mb-2" id="border">
-                                            <strong><i className="fa-icon far fa-clock fa-lg" title="Time of Day"></i></strong>   {drug.time_of_day}
-                                            </div>
-                                            <div className="col-sm-1 mt-4 mb-2" id="border">          
-                                            <DeleteBtnSmall title="Delete this Prescription" onClick={() => this.deleteRx(drug.id)} /> {this.state.alert}                                   
-                                            </div>
                                         </div>
-                                        <div className="divider"></div>
-                                            
+                                        <div className="col-sm mt-4 mb-2" id="border">
+                                            <strong><i className="fas fa-pills fa-lg blue" title="Dosage"></i></strong> {drug.perDay} 
+                                        </div>
+                                        <div className="col-sm mt-4 mb-2" id="border">
+                                            <strong><i className="fa-icon far fa-calendar-alt fa-lg lightblue" title="Frequency"></i></strong>  {drug.frequency} 
+                                        </div>
+                                        <div className="col-sm mt-4 mb-2" id="border">
+                                            <strong><i className="fa-icon far fa-clock fa-lg" title="Time of Day"></i></strong>   {drug.time_of_day}
+                                        </div>
+                                        <div className="col-sm-1 mt-4 mb-2" id="border">          
+                                            <DeleteBtnSmall title="Delete this Prescription" onClick={() => this.deleteRx(drug.id)} /> {this.state.alert}                                   
+                                        </div>
+                                    </div>
+                                    <div className="divider"></div>                             
                                         </Rx>
-                                    ))}
-                                    
+                                    ))}                         
                                 </PatientCard>
                             ))}
                             <div className="row">
                                 <div className="col-sm-5 mt-3">
-                                    <a href='/addpatient'><button className="standard-btn">ADD NEW PATIENT</button></a>
+                                    <a href='/addpatient'><button className="standard-btn"><i className="fas fa-universal-access fa-spin person" style={{ color: 'white'}}></i>ADD NEW PATIENT</button></a>
                                 </div>
                                 <div className="col"></div>        
                                 <div className="col-sm-4 mt-3">
-                                    <a href='/addRx'><button className="standard-btn">ADD NEW Rx</button></a>
+                                    <a href='/addRx'><button className="standard-btn"><i className="fas fa-tablets fa-spin fa-xs tablets" style={{ color: 'white'}}></i>ADD NEW Rx</button></a>
                                 </div>
                             </div>
                         </div>

@@ -19,12 +19,14 @@
     "nodemon": "^1.18.7"
   },
   "dependencies": {
+    "@sweetalert/with-react": "^0.1.1",
     "axios": "^0.18.0",
     "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.4.3",
     "event-stream": "^4.0.1",
     "express": "^4.16.4",
     "express-session": "^1.16.1",
+    "hover.css": "^2.3.2",
     "if-env": "^1.0.4",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
@@ -43,7 +45,9 @@
     "react-navigation": "^3.8.1",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
+    "react-validation": "^3.0.7",
     "sequelize": "^5.7.1",
+    "sweetalert": "^2.1.2",
     "sweetalert2-react": "^0.8.1"
   }
 }

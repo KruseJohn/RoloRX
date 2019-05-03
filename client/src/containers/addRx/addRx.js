@@ -136,7 +136,7 @@ class AddRx extends Component {
         );
         
         return (
-            <div className="gradient-background">
+            <div className="gradient-background2">
             <NavLinks />
             <Logo />
                 <div className="container bbstyle addRx-box">

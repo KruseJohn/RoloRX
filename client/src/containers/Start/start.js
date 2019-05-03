@@ -18,12 +18,17 @@ class Start extends React.Component {
                 <div className="gradient-background">
                     <Logo />
                 <div className="container start-div">
-
-                    <a href='/login'><h3 id="logIn" className='startStyle'>Log-in</h3></a>
-
-                    <a href='/signup'> <h3 id="signUp" className='startStyle'>Sign-up</h3></a>
-
-                    <a href='/info'> <h3 id="info" className='startStyle'>Info</h3></a>
+                    <div className="row">
+                        <div className="col-sm">
+                            <a href='/login'><h3 id="logIn" className='startStyle'>Log-in</h3></a>
+                        </div>
+                        <div className="col-sm">
+                            <a href='/signup'><h3 id="signUp" className='startStyle'>Sign-up</h3></a>
+                        </div>
+                        <div className="col-sm">
+                            <a href='/info'><h3 id="info" className='startStyle'>Info</h3></a>
+                        </div>
+                    </div>
                 </div>
                 </div>
 

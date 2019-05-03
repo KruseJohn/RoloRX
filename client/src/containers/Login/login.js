@@ -4,6 +4,7 @@ import Field from "../../components/Field";
 import Logo from "../../components/Logo/logo";
 import { Message } from "../../components/Message/message";
 import { Redirect } from "react-router-dom";
+import swal from "@sweetalert/with-react";
 
 class Login extends React.Component {
     state = {
@@ -40,30 +41,60 @@ class Login extends React.Component {
                     }
                 ).then(response => {
                     if (response.data === 'Login failed') {
-                        console.log(response);
+
+                        swal({
+                            icon: "error",
+                            title: "Login Failed!",
+                            text: "Please be sure to enter the correct username and password...",
+                            timer: 4000,
+                            buttons: false
+                          }).then(
+                              function () {},
+                              function (dismiss) {
+                                  if (dismiss === "timer") {
+                                  }
+                              }
+                          ).then(showAlert => {
+                        // console.log(response);
                         this.setState({
                             redirect: false,
-                            error: true,
+                            error: false,
                             errorMessage: response.data 
                         });
+                    });
                     } else {
+                        
+                        swal({
+                            icon: "success",
+                            title: "Login Successful!",
+                            text: " ",
+                            timer: 1000,
+                            buttons: false
+                          }).then(
+                              function () {},
+                              function (dismiss) {
+                                  if (dismiss === "timer") {
+                                  }
+                              }
+                          ).then(showAlert => {
+                            
                         console.log('successful login');
-                        localStorage.setItem('JWT', response.data.token);
+                      
                         this.setState({
                             loggedIn: true,
                             redirect: true
-                        });
-                    }
-                })
-                .catch(error => {
-                    console.log(error.data);
-                });
+                        }); 
+                    });  
+                 localStorage.setItem('JWT', response.data.token);
+                }        
+             });    
         }
     }
 
     render() {
         if (this.state.redirect === true) {
             return <Redirect to='/mainpage' />
+            
         }
 
         return (
@@ -96,6 +127,7 @@ class Login extends React.Component {
                             </div>
                             <div className="col-md-3 mx-auto">
                             <input id='submit' type='submit' value='SUBMIT' onClick={this.handleSubmit} />
+                            
                             </div>
                             <span><a href='/signup'>Don't have an account?  Sign up!</a></span> 
                             <br />
