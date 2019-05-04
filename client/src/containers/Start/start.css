@@ -4,7 +4,7 @@
     font-size: 20px;
     color: black;
     border-radius: 50px;
-    padding: 20px;
+    padding: 20px 0px;
     font-weight: bold;
     margin: auto;
 }
@@ -13,46 +13,32 @@
     opacity: .5;
 }
 
-#brand {
-    width: 200px;
-    border-radius: 100px;
+#logIn, #signUp, #info {
+    background: #fdf7ec;
+    margin: 100px 6px 0px 6px;
+    border-top: .5px solid #888888;
+    border-bottom: 1px solid #888888;
+    border-left: 30px solid #d0ecfc;
+    border-right: 30px solid #ffd1d1;
+    box-shadow: 3px 3px 20px -3px rgba(0, 0, 0, 0.568);
 }
-#logIn {
-    background: green;
-    margin-top: 300px;
-    color: white;
-    opacity: .75;
-}
-
-#signUp {
-    background: blue;
-    margin-top: 300px;
-    color: white;
-    opacity: .75;
-}
-
-#info {
-    background: red;
-    margin-top: 300px;
-    color: white;
-    opacity: .8;
-}
-
 
 a {
     text-decoration: none !important;
-  }
-
+}
 
 
 @media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) 
+and (min-device-width : 315px) 
+and (max-device-width : 667px) 
 and (orientation : portrait) { 
-    .startStyle {
-        font-size: 20px;
+    #logIn, #signUp, #info {
+        margin: 30px 6px 0px 6px;
     }
-    .boxStyle {
-        width: 70%;
+
+    .startStyle {
+        font-size: 16px;
+        padding: 16px 0px;
+
     }
  }

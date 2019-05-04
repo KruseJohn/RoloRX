@@ -75,11 +75,11 @@ class Info extends React.Component {
                     <div className="container bbstyle-final">
                         <div className="row align-items-center">               
                             <div className="col-sm" id="logo">
-                            <img id="logoImg4" src={image6} alt="phone-app//" />  
+                            <img id="logoImg3" src={image6} alt="phone-app//" />  
                             </div>
                             <div className="col-sm" id="infoText">           
                              <br />
-                                <h5><p>With that in mind, Rolo-Rx was created out of the need to easily track, schedule, and organize prescriptions.  All at your fingertips!
+                                <h5><p>With that in mind, Rolo-Rx was created to easily track, schedule, and organize prescriptions.  All at your fingertips!
                                     Whether you are an individual, a caregiver, or a nurse providing in-home care, Rolo-Rx was designed to help ease the stress of remembering 
                                     when and how to take medications.</p></h5>
                              <br />
@@ -99,15 +99,15 @@ class Info extends React.Component {
 
                     <div className="container bottom">
                         <div className="row">
-                            <div className="col-sm-1"></div>
-                            <div className="col-sm">
+                            <div className="col-sm"></div>
+                            <div className="col-sm-3">
                                 <a href="/login"><h3 id="logIn2" className="startStyle" style={{ background: 'red' }}>Log-in</h3></a>
                             </div>
-                            <div className="col-sm-6"></div>
-                            <div className="col-sm">
+                            <div className="col-sm"></div>
+                            <div className="col-sm-3">
                                 <a href="/signup"><h3 id="signUp2" className="startStyle" style={{ background: 'blue' }}>Sign-up</h3></a>
                             </div>
-                            <div className="col-sm-1"></div>
+                            <div className="col-sm"></div>
                         </div>
                     </div>
                 </div>

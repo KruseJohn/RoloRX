@@ -38,10 +38,6 @@
 }
 
 #logoImg3 {
-    width: 400px;
-}
-
-#logoImg4 {
     width: 260px;
 }
 
@@ -60,7 +56,11 @@
 and (min-device-width : 315px) 
 and (max-device-width : 667px) 
 and (orientation : portrait) { 
-    #logoImg {
-        width: 160px;
+    #logoImg, #logoImg2, #logoImg3 {
+        width: 200px;
+    }
+
+    .startStyle {
+        margin: 10px 0;
     }
  }
