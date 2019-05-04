@@ -149,7 +149,9 @@ class MainPage extends React.Component {
                 <NavLinks />
                 <Logo />
                 <div className="container">
+                <h1 id="clock"><Moment format="dddd">{this.props.dateToFormat}</Moment></h1>
                 <h1 id="clock"><Moment format="MMMM D, YYYY">{this.props.dateToFormat}</Moment></h1>
+                <h1 id="clock"><Moment format="hh:mm a">{this.props.dateToFormat}</Moment></h1>
                     <div className="row dashboard bbstyle">
                         {this.state.patients.filter(patient => patient.id === this.state.patientId).map(patient => (
                             <RxModal

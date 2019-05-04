@@ -1,10 +1,13 @@
+.container {
+    margin-top: 50px;
+}
+
 #contents {
     font-size: .6em;
 }
 
 #clock {
     color: white;
-    margin-top: 30px;
     text-align: right;
 }
 
