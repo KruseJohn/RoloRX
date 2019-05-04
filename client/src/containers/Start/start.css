@@ -3,6 +3,11 @@
     padding: 30px;
 }
 
+#startImg {
+    width: 100%;
+    height: auto;
+}
+
 .startStyle {
     font-family: 'Montserrat', sans-serif;
     text-align: center;

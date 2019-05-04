@@ -1,6 +1,7 @@
 import React from "react";
 import "./start.css";
 import Logo from "../../components/Logo/logo";
+import image from "../../components/Images/pharmacy.jpg";
 
 
 class Start extends React.Component {
@@ -29,6 +30,12 @@ class Start extends React.Component {
                         <div className="col-sm-1"></div>
                         <div className="col-sm">
                             <a href='/info'><h3 id="info" className='startStyle'>About</h3></a>
+                        </div>
+                    </div>
+                    <br />
+                    <div className="row">
+                        <div className="col-sm">
+                            <img id="startImg" src={image} alt="pharmacy" />
                         </div>
                     </div>
                 </div>

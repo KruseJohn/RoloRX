@@ -13,7 +13,7 @@ class Info extends React.Component {
         return (
             <div>
                 <div className="gradient-background-info">
-                    <a href="https://github.com/Pill-Box"><p className="git"><i className="fab fa-github"></i></p></a>
+                    <a href="https://github.com/KruseJohn/RoloRX"><p className="git"><i className="fab fa-github"></i></p></a>
                     <div className="container bbstyle-info">
                         <div className="row align-items-center">
                             <div className="col-sm"></div>
