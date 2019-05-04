@@ -8,6 +8,10 @@
     text-decoration: none;
 }
 
+.logo {
+    color: white;
+}
+
 .pestle {
     margin-right: 16px;
 }
