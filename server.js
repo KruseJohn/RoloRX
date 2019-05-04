@@ -42,6 +42,10 @@ app.get("/addRx", (req, res) => {
   res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
 
+app.get("/info", (req, response) => {
+  response.sendFile(path.join(__dirname, "client/build", "index.html"));
+});
+
 app.get("/signout", (req, res) => {
   res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
