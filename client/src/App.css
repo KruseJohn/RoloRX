@@ -61,11 +61,13 @@ a:hover {
   box-shadow: 3px 3px 20px -3px rgba(0, 0, 0, 0.568);
 }
 
-.gradient-background {
+.gradient-background, .gradient-background-info {
   background: linear-gradient(35deg, #e66465, #e66465 5%, #9198e5);
   height: 100%;
   min-height: 1100px;
 }
+
+
 
 .gradient-background1 {
   background: linear-gradient(35deg, #6492e6, #6492e6 25%, #b191e5);

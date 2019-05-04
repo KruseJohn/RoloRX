@@ -1,0 +1,66 @@
+.git {
+    padding: 1em;
+}
+
+.bbstyle-info {
+    box-sizing: border-box;
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    padding: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+
+.bbstyle-final {
+    box-sizing: border-box;
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    padding: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+}
+
+.header, #infoText {
+    text-align: center;
+}
+
+#logoImg {
+    width: 300px;
+}
+
+#logoImg2 {
+    width: 220px;
+    border-radius: 200px;
+}
+
+#logoImg3 {
+    width: 400px;
+}
+
+#logoImg4 {
+    width: 260px;
+}
+
+.bottom {
+    margin-bottom: 200px;
+}
+
+#logIn2, #signUp2 {
+    color: white;
+    opacity: .8;
+}
+
+
+
+@media only screen 
+and (min-device-width : 315px) 
+and (max-device-width : 667px) 
+and (orientation : portrait) { 
+    #logoImg {
+        width: 160px;
+    }
+ }
