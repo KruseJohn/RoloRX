@@ -1,14 +1,3 @@
 .delete-btn, .rx-modal-btn {
   float: right;
 }
-
-
-@media only screen 
-and (min-device-width : 315px) 
-and (max-device-width : 667px) 
-and (orientation : portrait) { 
-  .get-drug-info {
-    margin-left: auto;
-    margin-right: auto;
-  }
-}

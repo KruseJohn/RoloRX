@@ -1,6 +1,7 @@
 import React from 'react';
 import './rxModal.css';
 
+
 const RxModal = ({ handleClose, show, children }) => {
 
   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
@@ -14,8 +15,7 @@ const RxModal = ({ handleClose, show, children }) => {
         </div>
       </section>
     </div>
-   
-  )
+  ) 
 }
 
 export default RxModal;

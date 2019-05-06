@@ -47,7 +47,16 @@
 
 #logIn2, #signUp2 {
     color: white;
-    opacity: .8;
+    opacity: .7;
+    border: 1.25px solid #b9b9b9;
+    box-shadow: 3px 3px 20px -3px rgba(0, 0, 0, 0.568);
+}
+
+#logIn2:hover, #signUp2:hover {
+    color: white;
+    opacity: 1;
+    border: 1.25px solid #b9b9b9;
+    box-shadow: 3px 3px 20px -3px rgba(0, 0, 0, 0.568);
 }
 
 

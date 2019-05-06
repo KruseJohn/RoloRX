@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import NavLinks from '../../components/Nav/navBar';
 import Logo from '../../components/Logo/logo';
+import SweetAlert from "react-bootstrap-sweetalert";
 import './addRx.css';
 
 
@@ -52,7 +53,6 @@ class AddRx extends Component {
                         isLoggedIn: true,
                         error: false,
                     });
-
                     // console.log(response.data)
                     // console.log(this.state.userId)
                     this.loadPatient();
@@ -66,7 +66,7 @@ class AddRx extends Component {
     loadPatient = () => {
         axios.get('/api/user/patients/' + this.state.userId)
             .then(patientData => {
-                // console.log(patientData.data.Patients);
+                console.log(patientData.data.Patients);
                 if(patientData) {
                     this.setState({
                         patients: patientData.data.Patients,
@@ -75,6 +75,7 @@ class AddRx extends Component {
                 }
             })
             .catch(err => console.log(`Error: ${err}`)
+        
             );
     }
 
@@ -112,7 +113,7 @@ class AddRx extends Component {
 
         this.setState({
             [name]: value
-        })
+        });
     }
 
     handleFormSubmit = event => {
@@ -122,13 +123,27 @@ class AddRx extends Component {
 
     }
 
+    noPatient = () => (
+        
+        <SweetAlert
+            warning
+            confirmBtnText="Okay"
+            confirmBtnBsStyle="danger"
+            title="Oops!"
+            onConfirm={() => window.location.href = "/addpatient"}
+            >
+            <p>There are no patients listed...</p>  Please add a patient first!
+        </SweetAlert>
+    )
+    
+
     render() {
         if (this.state.redirect === true) {
-            window.location.href = '/mainpage'
+            window.location.href = "/mainpage"
         }
 
         if (this.state.isLoggedIn === false) {
-            window.location.href = '/login'
+            window.location.href = "/login"
         }
 
         let optionItems = this.state.patients.map(patient => 
@@ -145,14 +160,14 @@ class AddRx extends Component {
                         <i className="fas fa-prescription fa-4x"></i>
                         <h3 className="login-h3">ADD PRESCRIPTION</h3>
                             <div className="form-group formStyle">
-                                <label htmlFor="patientName" className="addRxFormLabel">Patient Name</label>
+                                <label htmlFor="patientName" className="addRxFormLabel">{optionItems.length ? optionItems : this.noPatient()}Patient Name</label>
                                 <select className="form-control formFieldsStyleAddRx" id="patientName"
                                     value={optionItems.key}
                                     name="patientId"
                                     onChange={this.handleInputChange}
-                                >
+                                >   
                                     {optionItems}
-
+                                    
                                 </select>
                                 <label htmlFor="rx_num" className="addRxFormLabel">Rx Number</label>
                                 <input type="text" className="form-control formFieldsStyleAddRx" id="rx_num"

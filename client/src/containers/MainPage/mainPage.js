@@ -6,6 +6,7 @@ import NavLinks from "../../components/Nav/navBar";
 import DeleteBtn from "../../components/Buttons/deleteBtnLarge";
 import DeleteBtnSmall from "../../components/Buttons/deleteBtnSmall.js";
 import RxModalBtn from "../../components/Buttons/openModalBtn";
+import InfoBtn from "../../components/Buttons/infoBtn";
 import RxModal from "../../components/RxModal/rxModal";
 import Moment from "react-moment";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -131,14 +132,14 @@ class MainPage extends React.Component {
     }
 
     handleRxModal = id => {
-         console.log(id)
+        console.log(id)
         this.setState({ show: true, patientId: id })
-
     }
 
     handleHideModal = () => this.setState({ show: false })
 
-
+    getDrugInfo = () => window.open("https://www.dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?")
+    
     render() {
         if (this.state.isLoggedIn === false) {
             window.location.href = "/login"
@@ -148,7 +149,7 @@ class MainPage extends React.Component {
             <div className="gradient-background1">
                 <NavLinks />
                 <Logo />
-                <div className="container">
+                <div className="container p-2">
                 <h1 id="clock"><Moment format="dddd">{this.props.dateToFormat}</Moment></h1>
                 <h1 id="clock"><Moment format="MMMM D, YYYY">{this.props.dateToFormat}</Moment></h1>
                 <h1 id="clock"><Moment format="hh:mm a">{this.props.dateToFormat}</Moment></h1>
@@ -158,8 +159,11 @@ class MainPage extends React.Component {
                                 show={this.state.show}
                                 handleClose={this.handleHideModal}
                                 key={patient.id}>
-                                <h4><i><strong> {patient.name_first} </strong>
-                                <strong> {patient.name_last} </strong></i></h4>
+                                <div className="col-sm-1 float-right">
+                                    <InfoBtn title="www.dailymed.drugInfo" onClick={() => this.getDrugInfo()} />
+                                </div>
+                                    <h4><i><strong> {patient.name_first} </strong>
+                                    <strong> {patient.name_last} </strong></i></h4>
                                 <hr />
                                 {patient.Rxes.map(drug => (
                                     <Rx key={drug.id}>
@@ -175,15 +179,15 @@ class MainPage extends React.Component {
                                         <strong>Prescriber Number:</strong> {drug.prescriber_number}<br />
                                         <strong>Pharmacist:</strong> {drug.pharmacist}<br />
                                         <strong>Pharmacy Number:</strong> {drug.pharmacy_number}<br />
-                                        <strong>Notes:</strong> {drug.notes}<br /> 
-                                        <br/>
+                                        <strong>Notes:</strong> {drug.notes}<br />
+                                        <br/>                             
                                         <hr/>
                                     </Rx>
-                                ))}
+                                ))}   
                             </RxModal>
                         ))}
 
-                        <div className="col-md-12 patient-cards">
+                        <div className="col-md-12 p-0 patient-cards">
                             {this.state.patients.map(patient => (
                                 <PatientCard key={patient.id}>  
                                     <div className="row">
@@ -210,7 +214,7 @@ class MainPage extends React.Component {
                                             <strong><i className="fas fa-pills fa-lg blue" title="Dosage"></i></strong> {drug.perDay} 
                                         </div>
                                         <div className="col-sm mt-4 mb-2" id="border">
-                                            <strong><i className="fa-icon far fa-calendar-alt fa-lg lightblue" title="Frequency"></i></strong>  {drug.frequency} 
+                                            <strong><i className="fa-icon far fa-calendar-alt fa-lg green" title="Frequency"></i></strong>  {drug.frequency} 
                                         </div>
                                         <div className="col-sm mt-4 mb-2" id="border">
                                             <strong><i className="fa-icon far fa-clock fa-lg" title="Time of Day"></i></strong>   {drug.time_of_day}

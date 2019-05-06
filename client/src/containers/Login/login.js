@@ -7,16 +7,18 @@ import { Redirect } from "react-router-dom";
 import swal from "@sweetalert/with-react";
 
 class Login extends React.Component {
-    state = {
-        username: '',
-        password: '',
+    initialState = {
+        username: "",
+        password: "",
         redirect: false,
         error: false,
-        errorMessage: ''
+        errorMessage: ""
     }
+    
+    state = this.initialState
 
     componentDidMount() {
-        localStorage.removeItem('JWT')
+        localStorage.removeItem("JWT")
     }
 
     handleInput = e => {
@@ -25,22 +27,22 @@ class Login extends React.Component {
     }
 
     handleSubmit = e => {
-        e.preventDefault()
+        e.preventDefault();
 
-        if (this.state.username === '' || this.state.password === '') {
+        if (this.state.username === "" || this.state.password === "") {
             this.setState({
                 showError: false,
                 showNullError: true,
                 loggedIn: false,
             });
         } else {
-            axios.post('/loginUser',
+            axios.post("/loginUser",
                     {
                         username: this.state.username,
                         password: this.state.password
                     }
                 ).then(response => {
-                    if (response.data === 'Login failed') {
+                    if (response.data === "Login failed") {
 
                         swal({
                             icon: "error",
@@ -59,7 +61,9 @@ class Login extends React.Component {
                         this.setState({
                             redirect: false,
                             error: false,
-                            errorMessage: response.data 
+                            errorMessage: response.data,
+                            username: "",
+                            password: "" 
                         });
                     });
                     } else {
@@ -78,14 +82,14 @@ class Login extends React.Component {
                               }
                           ).then(showAlert => {
                             
-                        console.log('successful login');
+                        console.log("successful login");
                       
                         this.setState({
                             loggedIn: true,
                             redirect: true
                         }); 
                     });  
-                 localStorage.setItem('JWT', response.data.token);
+                 localStorage.setItem("JWT", response.data.token);
                 }        
              });    
         }
@@ -93,7 +97,7 @@ class Login extends React.Component {
 
     render() {
         if (this.state.redirect === true) {
-            return <Redirect to='/mainpage' />
+            return <Redirect to="/mainpage" />
             
         }
 
@@ -104,34 +108,33 @@ class Login extends React.Component {
                     <div className="login-div">
                         <div className="container bbstyle">
                             <h3 className="login-h3">LOG IN</h3>
-                            <div className='row'>
-                                <div className='col-md-12'>
-                                    <form className='inputForm' >
+                            <div className="row">
+                                <div className="col-md-12">
+                                    <form className="inputForm" >
                                         <Field
-                                            name='username'
-                                            id='nameArea'
+                                            name="username"
+                                            id="nameArea"
                                             value={this.state.username}
                                             onChange={this.handleInput}
-                                            placeholder='username'
+                                            placeholder="username"
                                         />
                                         <Field
-                                            name='password'
-                                            type='password'
-                                            id='password'
+                                            name="password"
+                                            type="password"
+                                            id="password"
                                             value={this.state.password}
                                             onChange={this.handleInput}
-                                            placeholder='password'
+                                            placeholder="password"
                                         />
                                     </form>
                                 </div>
                             </div>
                             <div className="col-md-3 mx-auto">
-                            <input id='submit' type='submit' value='SUBMIT' onClick={this.handleSubmit} />
-                            
+                            <input id="submit" type="submit" value="SUBMIT" onClick={this.handleSubmit} />
                             </div>
-                            <span><a href='/signup'>Don't have an account?  Sign up!</a></span> 
+                            <span><a href="/signup">Don"t have an account?  Sign up!</a></span> 
                             <br />
-                            {this.state.error ? <Message key='1'> {this.state.errorMessage} </Message> : null}
+                            {this.state.error ? <Message key="1"> {this.state.errorMessage} </Message> : null}
                         </div>
                     </div>
                 </div>
