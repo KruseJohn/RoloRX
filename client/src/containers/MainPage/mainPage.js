@@ -63,11 +63,11 @@ class MainPage extends React.Component {
     loadUser = () => {
         axios.get("/api/user/patient/rx/" + this.state.userId)
             .then(patientData => {
-                // console.log(patientData.data.Patients);
+                console.log(patientData.data.Patients);
                 this.setState({
                     patients: patientData.data.Patients,
                     alert: null
-                })
+                });
             })
             .catch(err => console.log(`Error: ${err}`)
             );
@@ -230,11 +230,11 @@ class MainPage extends React.Component {
                             ))}
                             <div className="row">
                                 <div className="col-sm-5 mt-3">
-                                    <a href='/addpatient'><button className="standard-btn"><i className="fas fa-universal-access fa-spin person" style={{ color: 'white'}}></i>ADD NEW PATIENT</button></a>
+                                    <a href="/addpatient"><button className="standard-btn"><i className="fas fa-universal-access fa-spin person" style={{ color: 'white'}}></i>ADD NEW PATIENT</button></a>
                                 </div>
                                 <div className="col"></div>        
                                 <div className="col-sm-4 mt-3">
-                                    <a href='/addRx'><button className="standard-btn"><i className="fas fa-tablets fa-spin fa-xs tablets" style={{ color: 'white'}}></i>ADD NEW Rx</button></a>
+                                    <a href="/addRx"><button className="standard-btn"><i className="fas fa-tablets fa-spin fa-xs tablets" style={{ color: 'white'}}></i>ADD NEW Rx</button></a> 
                                 </div>
                             </div>
                         </div>

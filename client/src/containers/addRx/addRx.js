@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
-import NavLinks from '../../components/Nav/navBar';
-import Logo from '../../components/Logo/logo';
-import SweetAlert from "react-bootstrap-sweetalert";
-import './addRx.css';
+import NavLinks from "../../components/Nav/navBar";
+import Logo from "../../components/Logo/logo";
+//import SweetAlert from "react-bootstrap-sweetalert";
+import "./addRx.css";
 
 
 class AddRx extends Component {
@@ -63,25 +63,27 @@ class AddRx extends Component {
         }
     }
 
+    
+
     loadPatient = () => {
-        axios.get('/api/user/patients/' + this.state.userId)
+        axios.get("/api/user/patients/" + this.state.userId)
             .then(patientData => {
                 console.log(patientData.data.Patients);
                 if(patientData) {
                     this.setState({
                         patients: patientData.data.Patients,
                         patientId: patientData.data.Patients[0].id
-                    })
+                    });
                 }
             })
             .catch(err => console.log(`Error: ${err}`)
-        
             );
-    }
-
+        }
+    
+    
     getMed = () => {
 
-        axios.post('/api/Rxs', {
+        axios.post("/api/Rxs", {
             rx_num: this.state.rx_num,
             drug_name: this.state.drugName,
             refills: this.state.refills,
@@ -123,20 +125,19 @@ class AddRx extends Component {
 
     }
 
-    noPatient = () => (
-        
-        <SweetAlert
-            warning
-            confirmBtnText="Okay"
-            confirmBtnBsStyle="danger"
-            title="Oops!"
-            onConfirm={() => window.location.href = "/addpatient"}
-            >
-            <p>There are no patients listed...</p>  Please add a patient first!
-        </SweetAlert>
-    )
+    //patientListEmpty = () => (
+         
+    //    <SweetAlert
+    //        showCancelButton="false"
+    //        confirmBtnText="Okay"
+    //        confirmBtnBsStyle="success"
+    //        title="There are no patients listed..."
+    //        onConfirm={() => window.location.href = "/addpatient"}
+    //        >
+    //        <h4>Please add a patient first!</h4>  
+    //    </SweetAlert>   
+    //)
     
-
     render() {
         if (this.state.redirect === true) {
             window.location.href = "/mainpage"
@@ -146,9 +147,16 @@ class AddRx extends Component {
             window.location.href = "/login"
         }
 
+        //if (this.state.patientId === undefined) {
+        //    this.patientListEmpty();
+        //} else {
+           // window.location.href = "/addRx" 
+        //} 
+        
         let optionItems = this.state.patients.map(patient => 
             <option key={patient.id} value={patient.id}>{patient.name_first} {patient.name_last}</option>
         );
+
         
         return (
             <div className="gradient-background2">
@@ -160,13 +168,13 @@ class AddRx extends Component {
                         <i className="fas fa-prescription fa-4x"></i>
                         <h3 className="login-h3">ADD PRESCRIPTION</h3>
                             <div className="form-group formStyle">
-                                <label htmlFor="patientName" className="addRxFormLabel">{optionItems.length ? optionItems : this.noPatient()}Patient Name</label>
+                                <label htmlFor="patientName" className="addRxFormLabel">Patient Name</label> {/*} {optionItems.length ? optionItems.key : this.patientListEmpty()} */}
                                 <select className="form-control formFieldsStyleAddRx" id="patientName"
                                     value={optionItems.key}
                                     name="patientId"
                                     onChange={this.handleInputChange}
                                 >   
-                                    {optionItems}
+                                    {optionItems} 
                                     
                                 </select>
                                 <label htmlFor="rx_num" className="addRxFormLabel">Rx Number</label>
