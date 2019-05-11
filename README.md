@@ -1,29 +1,29 @@
-# Create React Express App
+# Introducing Rolo-Rx!
 
-## About This Boilerplate
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+## Too many pills?  Confused over which medication to take, how much, or when?
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+![smiley](https://github.com/KruseJohn/RoloRX/blob/master/client/src/components/Images/smiley.png)
+![frustration](https://github.com/KruseJohn/RoloRX/blob/master/client/src/components/Images/frustration.png)
 
-## Starting the app locally
 
-Start by installing front and backend dependencies. While in this directory, run the following command:
+## well...
 
-```
-npm install
-```
+![idea](https://github.com/KruseJohn/RoloRX/blob/master/client/src/components/Images/bright.png)
 
-This should install node modules within the server and the client folder.
 
-After both installations complete, run the following command in your terminal:
+### Over half a century ago, a device called a "Rolodex" was born. Utilized to store the contact information of an individual or company, this "rolling index" could be found at any work desk.  Because of it's simplicity, well-organized data, and always an arms-length away, the Rolodex remained popular for many years, even into the digital age...
 
-```
-npm start
-```
+![rolodex](https://github.com/KruseJohn/RoloRX/blob/master/client/src/components/Images/rolodex2.gif)
 
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
+## So...
 
-## Deployment (Heroku)
+![nerd](https://github.com/KruseJohn/RoloRX/blob/master/client/src/components/Images/nerd.png)
 
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+### With that in mind, Rolo-Rx was created to easily track, schedule, and organize prescriptions.  All at your fingertips!  Whether you are an individual, a caregiver, or a nurse providing in-home care, Rolo-Rx was designed to help ease the stress of remembering when and how to take medications.
+
+![mobile-app](https://github.com/KruseJohn/RoloRX/blob/master/client/src/components/Images/app.png)
+
+## The right pill, at the right time!
+
+Depolyed to heroku: https://rolo-rx.herokuapp.com/
