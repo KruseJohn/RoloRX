@@ -24,3 +24,19 @@ With that in mind, Rolo-Rx was created to easily track, schedule, and organize p
 ## The right pill, at the right time!
 
 Depolyed to heroku: https://rolo-rx.herokuapp.com/
+
+#### Technology used
+
+- MySQL - [https://www.mysql.com/](https://www.mysql.com/)
+- Sequelize - [https://www.npmjs.com/package/sequelize](https://www.npmjs.com/package/sequelize)
+- Node.js - [https://nodejs.org/en/](https://nodejs.org/en/)
+- Express - [https://www.npmjs.com/package/express](https://www.npmjs.com/package/express)
+- React - [https://reactjs.org/](https://reactjs.org/)
+- Passport - [http://www.passportjs.org/](http://www.passportjs.org/)
+- Moment - [https://momentjs.com/](https://momentjs.com/)
+- Heroku - [https://www.heroku.com/home](https://www.heroku.com/home)
+- Bootstrap - [https://getbootstrap.com/](https://getbootstrap.com/)
+- React-Bootstrap - [https://react-bootstrap.github.io/](https://react-bootstrap.github.io/)
+- SweetAlert2 - [https://sweetalert2.github.io/](https://sweetalert2.github.io/)
+- React-Bootstrap-SweetAlert - [https://github.com/djorg83/react-bootstrap-sweetalert](https://github.com/djorg83/react-bootstrap-sweetalert)
+
