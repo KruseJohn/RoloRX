@@ -132,7 +132,7 @@ class Login extends React.Component {
                             <div className="col-md-3 mx-auto">
                             <input id="submit" type="submit" value="SUBMIT" onClick={this.handleSubmit} />
                             </div>
-                            <span><a href="/signup">Don"t have an account?  Sign up!</a></span> 
+                            <span><a href="/signup">Don't have an account?  Sign up!</a></span> 
                             <br />
                             {this.state.error ? <Message key="1"> {this.state.errorMessage} </Message> : null}
                         </div>
