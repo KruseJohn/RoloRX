@@ -25,7 +25,7 @@ With that in mind, Rolo-Rx was created to easily track, schedule, and organize p
 
 Depolyed to heroku: https://rolo-rx.herokuapp.com/
 
-#### Technology used
+### Technology used
 
 - MySQL - [https://www.mysql.com/](https://www.mysql.com/)
 - Sequelize - [https://www.npmjs.com/package/sequelize](https://www.npmjs.com/package/sequelize)
