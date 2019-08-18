@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@sweetalert/with-react": "^0.1.1",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.4.3",
     "event-stream": "^4.0.1",
@@ -29,9 +29,10 @@
     "hover.css": "^2.3.2",
     "if-env": "^1.0.4",
     "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "mysql2": "^1.6.5",
-    "npm": "^6.9.0",
+    "npm": "^6.10.3",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
@@ -46,7 +47,7 @@
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-validation": "^3.0.7",
-    "sequelize": "^5.7.1",
+    "sequelize": "^5.15.1",
     "sweetalert": "^2.1.2",
     "sweetalert2-react": "^0.8.1"
   }
