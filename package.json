@@ -2,7 +2,7 @@
   "name": "folder",
   "version": "1.0.0",
   "engines": {
-    "node": "18.12"
+    "node": "18.12.1"
   },
   "description": "",
   "main": "server.js",
